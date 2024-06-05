@@ -1,0 +1,121 @@
+* {
+	padding: 0px;
+	margin: 0px;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.parent {
+	width: 94%;
+	padding: 3%;
+}
+
+.sub-parent {
+	width: 100%;
+	float: left;
+	margin-top: 10px;
+}
+.child {
+	width: 31.3%;
+	margin-right: 2%;
+	float: left;
+}
+.label-style {
+	width: 100%;
+	float: left;
+	margin-bottom: 8px;
+	float: left;
+	font-weight: bold;
+}
+.textbox-style {
+	width: 70%;
+	padding: 10px;
+}
+.heading {
+	padding-bottom: 20px;
+}
+.sub-parent-1 {
+	width: 100%;
+	float: left;
+	margin-top: 20px;
+}
+.radio {
+	margin-top: 20px;
+}
+.checkbox {
+	margin-top: 10px;
+}
+
+.sub-parent-2 {
+	width: 100%;
+}
+.child-1 {
+	width: 100%;
+}
+c
+.button {
+	color: black;
+	padding: 8px 35px;
+	margin-top: 20px;
+	border: none;
+	border-radius: 5px;
+}
+.cancel {
+	background-color: grey;
+	padding: 10px 20px;
+	color: white;
+	border: none;
+}
+.submit {
+	color: black;
+	background-color: lightblue;
+	margin-left: 20px;
+	padding: 10px 20px;
+	border: none;
+}
+.center {
+	text-align: center;
+}
+.text-area {
+	width: 100%;
+	resize: none;
+}
+.error {
+	color: red;
+	display: block;
+}
+.tableParent {
+	width: 100%;
+	border-collapse: collapse;
+	border: solid lightblue;
+	border-radius: 20px;
+}
+.head-border {
+	border: solid lightblue;
+}
+.color {
+	text-align: left;
+}
+.border {
+	width: 92%;
+	padding: 4%;
+}
+.tableParent {
+	width: 100%;
+	border-collapse: collapse;
+	border: solid lightblue;
+	border-radius: 20px;
+}
+.addButton {
+	background-color: lightgreen;
+	color: black;
+	padding: 10px 20px;
+	border: none;
+}
+.button {
+	float: right;
+}
+.table {
+	padding: 15px;
+}
+.display-none{
+	display: none;
+}

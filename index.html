@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Forms</title>
+		<link rel="stylesheet" type="text/css" href="./css/style.css" />
+	</head>
+
+	<body>
+		<div class="parent" id="formToGrid">
+			<h1 class="heading">Registration</h1>
+			<h2 class="heading">Personal Details</h2>
+			<div class="sub-parent">
+				<!--Firstname-->
+				<div class="child">
+					<label class="label-style" for="firstName">First Name</label>
+					<input
+						type="text"
+						class="textbox-style"
+						id="firstName"
+						onchange=" return validateFirstName()"
+					/>
+					<div>
+						<span class="error" id="firstNameError"></span>
+					</div>
+				</div>
+
+				<!--Middle name-->
+				<div class="child">
+					<label class="label-style" for="middleName">Middle Name</label>
+					<input
+						type="text"
+						
+						class="textbox-style"
+						id="middleName"
+						onblur=" return validateLastName()"
+					/>
+				</div>
+
+				<!--last name-->
+				<div class="child">
+					<label class="label-style" for="lastName">Last Name</label>
+					<input
+						type="text"
+						
+						class="textbox-style"
+						id="lastName"
+						onblur=" return validateLastName()"
+					/>
+					<div>
+						<span class="error" id="lastNameError"></span>
+					</div>
+				</div>
+			</div>
+
+			<!---------------------------------------------------------------------->
+			<div class="sub-parent-1">
+				<!--Gender-->
+				<div class="child">
+					<label class="label-style">Gender</label>
+					<input type="radio"name="gender" class="radio" id="male" />
+					<label id="male" for="male">Male</label>
+					<input type="radio" name="gender" class="center" id="female" />
+					<label for="female">Female</label>
+					<input type="radio" name="gender" id="other" />
+					<label for="other">Others</label>
+					<div>
+						<span class="error" id="genderError"></span>
+					</div>
+				</div>
+				<!--email-->
+				<div class="child">
+					<label class="label-style" for="e-mail">E-mail Id</label>
+					<input
+						type="email"
+						
+						class="textbox-style"
+						id="e-mail"
+						onblur=" return validateEmail()"
+					/>
+					<div>
+						<span class="error" id="e-mailError"></span>
+					</div>
+				</div>
+				<!--mobile-->
+				<div class="child">
+					<label class="label-style" for="mobileNumber">Mobile Number</label>
+					<input
+						type="number"
+						
+						class="textbox-style"
+						id="mobileNumber"
+						onblur=" return validateNumber()"
+					/>
+					<div>
+						<span class="error" id="mobileNumberError"></span>
+					</div>
+				</div>
+			</div>
+			<div class="sub-parent-1">
+				<!--job position-->
+				<div class="child">
+					<label class="label-style" for="jobPosition">Job Position</label>
+					<select class="textbox-style" id="jobPosition" onblur=" return validateJob()">
+						<option>Select</option>
+						<option >UX Designer</option>
+						<option>Developer</option>
+						<option>QA</option>
+					</select>
+					<div>
+						<span class="error" id="jobError"></span>
+					</div>
+				</div>
+				<!--upload file-->
+				<div class="child">
+					<label class="label-style" for="upload">Upload</label>
+					<input type="file" class="textbox-style" id="upload"onblur=" return  validateFile()" />
+					<div>
+						<span class="error" id="fileError"></span>
+					</div>
+				</div>
+			</div>
+			<div class="sub-parent-1">
+				<h2 class="heading">Verification</h2>
+				<!--joined date-->
+				<div class="child">
+					<label class="label-style" for="joinedDate">Joined Date</label>
+					<input type="date" class="textbox-style" id="joinedDate"onblur=" return validateJoinedDate()" />
+					<div>
+						<span class="error" id="joinedDateError"></span>
+					</div>
+				</div>
+				<!---->
+				<div class="child">
+					<label class="label-style" for="endDate">End Date</label>
+					<input type="date" class="textbox-style" id="endDate" onblur=" return validateEndDate()"/>
+					<div>
+						<span class="error" id="endDateError"></span>
+					</div>
+				</div>
+				<!--verification-->
+				<div class="child">
+					<label class="label-style" for="verification">Verification</label>
+					<input type="checkbox" class="checkbox" id="verification" onblur=" return validateLastName()"/>
+					<label>Check if you have submitted all documents</label>
+					<div>
+						<span class="error" id="verificationError"></span>
+					</div>
+				</div>
+			</div>
+			<div class="sub-parent-1">
+				<h2 class="heading">Additional information</h2>
+				<!--comments-->
+				<div class="child-1">
+					<label class="label-style" for="comments">Comments</label>
+					<textarea rows="5" id="comments" class="text-area"></textarea>
+				</div>
+			</div>
+			<!--buttons-->
+			<div class="sub-parent-1">
+				<div class="allign-right">
+					<button class="cancel">Cancel</button>
+					<button id="submitbtn" class="submit" onclick="submitForm()">Submit</button>
+				</div>
+			</div>
+		</div>
+
+
+        <!-------------- --TABLE--------->
+
+		<div class="border display-none" id="gridToForm">
+			<div class="button">
+				<button class="addButton" onclick="addCandidate()">ADD</button>
+			</div>
+			<table class="tableParent">
+				<thead class="head-border">
+					<tr class="color">
+						<th class="table">ID</th>
+						<th class="table">Name</th>
+						<th class="table">Gender</th>
+						<th class="table">E-Mail</th>
+						<th class="table">Number</th>
+						<th class="table">Job position</th>
+						<th class="table">Joined Date</th>
+						<th class="table">End Date</th>
+                        <th class="table">Action</th>
+					</tr>
+				</thead>
+				<tbody id="tableBody">
+					<!--  insert id -->
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script src="js/external.js"></script>
+</html>
