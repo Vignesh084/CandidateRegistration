@@ -1,16 +1,15 @@
-var candidates = [];
+var candidates = [];// Decalre array for the CandidateInfo 
 
 function submitForm() 
 {
 	if (validateForm()) 
 	{
-		
+		//Update action
 		if (
 			document.getElementById("submitbtn").innerHTML.toLocaleLowerCase() ==
 			"update"
 		) {
 			let candidateinfo = readCandidateInfo();
-			console.log("checkIndex",candidates.Id)
 			let candidateindex = candidates.findIndex(
 				(candidate) => candidate.Id == candidateId
 			);
@@ -27,11 +26,11 @@ function submitForm()
 			candidates[candidateindex].comments = candidateinfo.comments;
 			candidates[candidateindex].filePath = candidateinfo.filePath;
 		}
+		//Save action
 		else 
 		{
 			 storeCandidateInfo();
 		}
-		console.log("result",candidates);
 		generateGrid();
 		clearForm();
 		showGrid();
@@ -81,7 +80,7 @@ function validateForm() {
 
 
 
-
+/**Validate Firstname */
 function validateFirstName() 
 {
 	let message = document.getElementById("firstName");
@@ -122,8 +121,8 @@ function validateGender() {
 function validateEmail() {
 	let message = document.getElementById("e-mail");
 	let emailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-	if (message.value != "") {     
-		if (message.value.match(emailFormat)) {  
+	if (message.value != "") {     // Required Field Validation
+		if (message.value.match(emailFormat)) {  // RegEx Validation
 			document.getElementById("e-mailError").innerHTML = "";
 			return true;
 		} else {
@@ -139,8 +138,8 @@ function validateEmail() {
 function validateNumber() {
 	let message = document.getElementById("mobileNumber");
 	var regex = "/^[0-9]{10}$/";
-    if (message.value != "") {
-	if (message.value.length == 10 && message.value != regex) {   
+    if (message.value != "") {// Required Field Validation
+	if (message.value.length == 10 && message.value != regex) { // RegEx Validation    
 		document.getElementById("mobileNumberError").innerHTML = "";
 		return true;
 	} else {
@@ -157,12 +156,12 @@ else{
 function validateFile() {
 	let error = document.getElementById("fileError");
 
-	
+	//Required Validation
 	if (document.getElementById("upload").value == "") {
 		error.innerHTML = "Please select any file";
 		return false;
 	} else {
-		
+		//Extention type validation
 
 		let extn = document.getElementById("upload").value.split(".").pop();
 		if (
@@ -186,20 +185,20 @@ function strToDate(datestr) {
 	return new Date(dateArray[0], dateArray[1], dateArray[2]);
 }
 
-
+//joined date validation
 function validateJoinedDate() {
-	
+	//Joined date is not filled
 	if (document.getElementById("joinedDate").value == "") {
 		document.getElementById("joinedDateError").innerHTML =
 			"*Joined date is required";
 		return false;
 	}
-	
+	//Joined date both Joined date and End Date is filled
 	else if (document.getElementById("endDate").value != "") {
 		let joinedDate = strToDate(document.getElementById("joinedDate").value);
 		let endDate = strToDate(document.getElementById("endDate").value);
 
-		
+		//Comparison between dates to validate
 		if (endDate < joinedDate) {
 			document.getElementById("joinedDateError").innerHTML =
 				"*Joined date must be less than the End date";
@@ -208,24 +207,24 @@ function validateJoinedDate() {
 			return true;
 		}
 	}
-	
+	// Input is valid
 	else {
 		document.getElementById("joinedDateError").innerHTML = "";
 		return true;
 	}
 };
 function validateEndDate() {
-	
+	//End date not filled
 	if (document.getElementById("endDate").value == "") {
 		document.getElementById("endDateError").innerHTML = "*End date is required";
 		return false;
 	}
-	
+	//Joined date and End date Filled
 	else if (document.getElementById("joinedDate").value != "") {
 		let joinedDate = strToDate(document.getElementById("joinedDate").value);
 		let endDate = strToDate(document.getElementById("endDate").value);
 
-	
+		//Comparison between dates to validate
 		if (endDate < joinedDate) {
 			document.getElementById("endDateError").innerHTML =
 				"*End date must be greater than the Joined date";
@@ -234,7 +233,7 @@ function validateEndDate() {
 			return true;
 		}
 	}
-	
+	//Input is Valid
 	else {
 		document.getElementById("endDateError").innerHTML = "";
 		return true;
@@ -242,7 +241,7 @@ function validateEndDate() {
 };
 function verification() {
 	let error = document.getElementById("verificationError");
-	if (document.getElementById("verification").checked) { 
+	if (document.getElementById("verification").checked) { //Required Validation
 		error.innerHTML = "";
 		return true;
 	} else {
@@ -261,7 +260,7 @@ function validateJob() {
 	}
 };
 
-
+/** getting values form and store in json format  */
 function readCandidateInfo() 
 {
 	let firstName = document.getElementById("firstName").value;
@@ -279,7 +278,7 @@ function readCandidateInfo()
 
 	let genderElements = document.getElementsByName("gender");
 
-	
+	//Iterating through the checkboxes to find which one is checked
 	for (var i = 0; i < genderElements.length; i++) 
 	{
 		if (genderElements[i].checked) {
@@ -287,7 +286,7 @@ function readCandidateInfo()
 		}
 	}
     
-
+	// Structure the JSON data
 	var candidateInfo = {
 		Id: candidates.length + 1,
 		firstName: firstName,
@@ -312,14 +311,14 @@ function storeCandidateInfo()
 };
 
 
-
+//Form the Table structure based on the Json data
 function generateGrid() {
 
-    
+    //Clear the table body before forming the table structure
     document.getElementById("tableBody").innerText = "";
 
     for (var i = 0; i < candidates.length; i++) {
-        
+        // Create the dynamic tr,td and append every td in tr and tr in tbody
         let trow = document.createElement("tr");
         trow.className = "color";
         let id = document.createElement("td");
@@ -342,11 +341,11 @@ function generateGrid() {
         edit.className = "table";
         let deleteData = document.createElement("td")
         edit.className = "table";
-		edit.innerHTML = `<a onclick='editForm(this)'>Edit</a>`;
-		deleteData.innerHTML = "<a onclick='deleteCandidate(this)'>Delete</a>"; 
+		edit.innerHTML = `<a onclick='editForm(this)'>Edit</a>`;//trigger edit 
+		deleteData.innerHTML = "<a onclick='deleteCandidate(this)'>Delete</a>"; // trigger delete
 
 
-        
+        // append the values in each resp. field in resp. cell
         id.innerHTML = `<a  onclick='viewForm(this)'>${candidates[i].Id}</a>`;
         firstName.innerHTML = candidates[i].firstName;
         gender.innerHTML = candidates[i].gender;
@@ -370,22 +369,22 @@ function generateGrid() {
         trow.appendChild(edit);
         trow.appendChild(deleteData);
 
-        
+        //appending a table row in table body
         document.getElementById("tableBody").appendChild(trow);
     }
 
 };
 
-
+/**Add candidate  */
 
 function addCandidate() {
-	clearForm();
+	clearForm(); // to clear the form
 	document.getElementById("submitbtn").innerHTML = "Submit";
-	showForm(); 
+	showForm(); // to show the form to user
 
 }
 
-
+/**Hide and show process */
 function showForm() {
     document.getElementById("formToGrid").style.display = "block";
     document.getElementById("gridToForm").style.display = "none";
@@ -412,7 +411,7 @@ function clearForm() {
 	document.getElementById("comments").value = "";
 	document.getElementById("verification").checked = false;
 
-	
+	//clearing error messages
 	document.getElementById("firstNameError").innerHTML = "";
 	document.getElementById("lastNameError").innerHTML = "";
 	document.getElementById("genderError").innerHTML = "";
@@ -426,33 +425,31 @@ function clearForm() {
 };
 
 
-
+/* Delete */
 
 function deleteCandidate(candidateobj) 
 {
-    var deleterow = candidateobj.closest("tr");
+    var deleterow = candidateobj.closest("tr");//Finding the CandidateId
     let delcandidateId = parseInt(deleterow.cells[0].innerText);
     if (confirm("Are you sure you want to delete this Candidate?")) {
         let candidateindex = candidates.findIndex(candidate => candidate.Id == delcandidateId);
-        candidates.splice(candidateindex, 1);
+        candidates.splice(candidateindex, 1);// Removing the reord
         candidates.forEach((candidate, index) => {
-            candidate.Id = index + 1;
+            candidate.Id = index + 1;//Displaying the rest of the Record
         });
     }
-    generateGrid();
+    generateGrid();//Forming the Grid
 };
 
-
+/**Edit  */
 
 function editForm(obj) {
-	debugger
-	console.log("objvalue",obj)
 	var edit = obj.closest("tr");
 	candidateId = parseInt(edit.cells[0].innerText);
 	let candidate = findCandidate(candidateId);
 	prefillForm(candidate);
 	document.getElementById("submitbtn").innerHTML = "Update";
-	showForm(); 
+	showForm(); //form is displayed
 };
 function findCandidate(candidateId) {
 	return candidates.find((candidate) => candidate.Id == candidateId);
